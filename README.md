@@ -19,9 +19,10 @@ $ echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> $HOME/bashrc
 
 ### Show version
 
-`$ terraform --version`
- 
-Terraform v0.11.10
+```
+$ terraform --version
+ Terraform v0.11.10
+```
 
 ## Usage
 
@@ -88,6 +89,31 @@ By generating the plan and applying it in the same command, Terraform can guaran
 ```
 $ echo "aws_iam_user.notification.arn" | terraform console
 arn:aws:iam::405223848550:user/notification
+```
+
+## State
+
+### How to tell to Terraform you moved a ressource in a module?
+
+If you moved an existing resource in a module, you need to update the state:
+
+`$ terraform state mv aws_iam_role.firehose_delivery_role module.mymodule`
+
+### How to import existing resource in Terraform?
+
+If you have an existing resource in your infrastructure provider, you can import it in your Terraform state:
+
+```
+$ terraform import aws_iam_policy.crf_elastic_post arn:aws:iam::405223848550:policy/crf_elastic_post
+aws_iam_policy.crf_elastic_post: Importing from ID "arn:aws:iam::405223848550:policy/crf_elastic_post"...
+aws_iam_policy.crf_elastic_post: Import complete!
+  Imported aws_iam_policy (ID: arn:aws:iam::405223848550:policy/crf_elastic_post)
+aws_iam_policy.crf_elastic_post: Refreshing state... (ID: arn:aws:iam::405223848550:policy/crf_elastic_post)
+
+Import successful!
+
+The resources that were imported are shown above. These resources are now in
+your Terraform state and will henceforth be managed by Terraform.
 ```
 
 ## Workspaces
@@ -238,7 +264,7 @@ So the solution is, simply, to update your date and time to the good time ;-).
 If, suddently, you obtain an error message "AWS was not able to validate the provided access credentials", like this:
 
 ```
-* data.aws_vpc.vpc-conti: data.aws_vpc.vpc-conti: AuthFailure: AWS was not able to validate the provided access credentials
+* data.aws_vpc.vpc-titi: data.aws_vpc.vpc-titi: AuthFailure: AWS was not able to validate the provided access credentials
 status code: 401, request id: 9fbd5beb-e065-4933-ba67-2ceae9104c4c
 ```
 
