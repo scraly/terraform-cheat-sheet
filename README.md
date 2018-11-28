@@ -31,9 +31,13 @@ Terraform v0.11.10
 
 The command terraform init will install :
 
-terraform modules
-eventually a backend
-and provider(s) plugins
+* terraform modules
+* eventually a backend
+* and provider(s) plugins
+
+### Init Terraform and don't ask any input
+
+`$ terraform init -input=false`
 
 ### Change backend configuration during the init
 
@@ -75,6 +79,17 @@ By generating the plan and applying it in the same command, Terraform can guaran
 
 `$ terraform apply -auto-aprove`
 
+### Apply and define new variables value
+
+`terraform apply -auto-approve -var tags-repository_url=${GIT_URL} -var tags-commit_id=${GIT_COMMIT}`
+
+### Debug
+
+```
+$ echo "aws_iam_user.notification.arn" | terraform console
+arn:aws:iam::405223848550:user/notification
+```
+
 ## Workspaces
 
 To manage multiple distinct sets of infrastructure resources/environments.
@@ -113,7 +128,7 @@ $ sudo apt install ruby
 $ gem install terraforming
 ```
 
-Pre-requisites
+Pre-requisites :
 
 Like for Terraform, you need to set AWS credentials
 
@@ -193,3 +208,55 @@ Example:
 
 Remarks: As you can see, terraforming can't extract for the moment API gateway resources so you need to write it manually.
 
+## Known issues
+
+### Signature expired: xxxx is now earlier than xxx
+
+If, suddently, you obtain an error message "Signature expired: xxx is now earlier than xxx", like this:
+
+```
+Error: Error refreshing state: 16 error(s) occurred:
+ 
+* aws_api_gateway_rest_api.crf_roadobject_api: 1 error(s) occurred:
+ 
+* aws_api_gateway_rest_api.crf_roadobject_api: aws_api_gateway_rest_api.crf_roadobject_api: InvalidSignatureException: Signature expired: 20171219T064456Z is now earlier than 20171219T064619Z (20171219T065119Z - 5 min.)
+status code: 403, request id: 04c1518e-e489-11e7-aba6-193053331701
+* aws_api_gateway_rest_api.crf_api: 1 error(s) occurred:
+```
+
+Don't worry it's not an issue :
+
+in the AWS account/user/credentials
+in terraform files
+
+BUT it's an issue in your local machine date and time!
+
+So the solution is, simply, to update your date and time to the good time ;-).
+
+### AWS was not able to validate the provided access credentials
+
+If, suddently, you obtain an error message "AWS was not able to validate the provided access credentials", like this:
+
+```
+* data.aws_vpc.vpc-conti: data.aws_vpc.vpc-conti: AuthFailure: AWS was not able to validate the provided access credentials
+status code: 401, request id: 9fbd5beb-e065-4933-ba67-2ceae9104c4c
+```
+
+No worries, it's the same issue as above: your local/VM machine date and time is not uptodate (clin d'œil).
+
+### Error configuring the backend "s3": RequestError: send request failed
+
+Again, you changed nothing but suddently you obtain a strange error message:
+
+```
+Initializing the backend...
+ 
+Error configuring the backend "s3": RequestError: send request failed
+caused by: Post https://sts.amazonaws.com/: Parent proxy unreacheable
+ 
+Please update the configuration in your Terraform files to fix this error.
+If you'd like to update the configuration interactively without storing
+the values in your configuration, run "terraform init".
+```
+
+It caused in reality by the proxy or a temporary issue between your network connectivity and AWS.
