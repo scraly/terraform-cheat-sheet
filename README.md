@@ -138,11 +138,11 @@ If you moved an existing resource in a module, you need to update the state:
 If you have an existing resource in your infrastructure provider, you can import it in your Terraform state:
 
 ```
-$ terraform import aws_iam_policy.crf_elastic_post arn:aws:iam::405223848550:policy/crf_elastic_post
-aws_iam_policy.crf_elastic_post: Importing from ID "arn:aws:iam::405223848550:policy/crf_elastic_post"...
-aws_iam_policy.crf_elastic_post: Import complete!
-  Imported aws_iam_policy (ID: arn:aws:iam::405223848550:policy/crf_elastic_post)
-aws_iam_policy.crf_elastic_post: Refreshing state... (ID: arn:aws:iam::405223848550:policy/crf_elastic_post)
+$ terraform import aws_iam_policy.elastic_post arn:aws:iam::123456789:policy/elastic_post
+aws_iam_policy.elastic_post: Importing from ID "arn:aws:iam::123456789:policy/elastic_post"...
+aws_iam_policy.elastic_post: Import complete!
+  Imported aws_iam_policy (ID: arn:aws:iam::123456789:policy/elastic_post)
+aws_iam_policy.elastic_post: Refreshing state... (ID: arn:aws:iam::123456789:policy/elastic_post)
 
 Import successful!
 
@@ -277,11 +277,11 @@ If, suddently, you obtain an error message "Signature expired: xxx is now earlie
 ```
 Error: Error refreshing state: 16 error(s) occurred:
  
-* aws_api_gateway_rest_api.crf_roadobject_api: 1 error(s) occurred:
+* aws_api_gateway_rest_api.toto_api: 1 error(s) occurred:
  
-* aws_api_gateway_rest_api.crf_roadobject_api: aws_api_gateway_rest_api.crf_roadobject_api: InvalidSignatureException: Signature expired: 20171219T064456Z is now earlier than 20171219T064619Z (20171219T065119Z - 5 min.)
+* aws_api_gateway_rest_api.toto_api: aws_api_gateway_rest_api.roadobject_api: InvalidSignatureException: Signature expired: 20171219T064456Z is now earlier than 20171219T064619Z (20171219T065119Z - 5 min.)
 status code: 403, request id: 04c1518e-e489-11e7-aba6-193053331701
-* aws_api_gateway_rest_api.crf_api: 1 error(s) occurred:
+* aws_api_gateway_rest_api.api: 1 error(s) occurred:
 ```
 
 Don't worry it's not an issue :
