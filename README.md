@@ -1,4 +1,9 @@
-# Terraform Cheat Sheet
+# Terraform CLI Cheat Sheet
+
+## About Terraform CLI
+
+Terraform, a tool created by Hashicorp in 2014, written in Go, aims to build, change and version control your infrastructure.
+This tool have a powerfull and very intuitive Command Line Interface.
 
 ## Installation
 
@@ -12,9 +17,18 @@ $ rm terraform_0.11.10_linux_amd64.zip
 
 ### OR install through tfenv: a Terraform version manager
 
+First of all, download the tfenv binary and put it in your PATH.
+
 ```
 $ git clone https://github.com/Zordrak/tfenv.git ~/.tfenv
 $ echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> $HOME/bashrc
+```
+
+Then, you can install desired version of terraform:
+
+```
+$ tfenv install 0.11.10
+Terraform v0.11.10 is already installed
 ```
 
 ### Show version
@@ -84,12 +98,32 @@ By generating the plan and applying it in the same command, Terraform can guaran
 
 `terraform apply -auto-approve -var tags-repository_url=${GIT_URL} -var tags-commit_id=${GIT_COMMIT}`
 
+### Destroy
+
+`$ terraform destroy`
+
+Delete all the resources!
+
+A deletion plan can be created before:
+
+`$ terraform plan –destroy`
+
+Can destroy only one resource :
+
+`$ terraform destroy -target aws_s3_bucket.my_bucket`
+
 ### Debug
 
 ```
 $ echo "aws_iam_user.notification.arn" | terraform console
 arn:aws:iam::405223848550:user/notification
 ```
+
+### Graph
+
+`$ terraform graph | dot –Tpng > graph.png`
+
+Visual dependency graph of terraform resources.
 
 ## State
 
