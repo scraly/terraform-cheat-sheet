@@ -6,23 +6,23 @@
 </head>
 <body>
 <header>
-  <h1>Terraform</h1>
+  <h1>Terraform CLI Cheat Sheet</h1>
   <!--<img class="logo" src="./redhat/assets/logo.png"/>-->
 </header>
 <section class="content">
 <div class="sect1">
-<h2 id="_terraform_cli_cheat_sheet">Terraform CLI Cheat Sheet</h2>
+<h2 id="_about_terraform_cli">About Terraform CLI</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_about_terraform_cli">About Terraform CLI</h3>
 <p class="">Terraform, a tool created by <a href="https://www.hashicorp.com/">Hashicorp</a> in 2014,
 written in Go, aims to build, change and version control your infrastructure.
 This tool have a powerfull and very intuitive Command Line Interface.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_installation">Installation</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_installation">Installation</h3>
-<div class="sect3">
-<h4 id="_install_through_curl">Install through curl</h4>
+<h3 id="_install_through_curl">Install through curl</h3>
 <div class="literalblock">
 <div class="content">
 <pre>$ curl -O https://releases.hashicorp.com/terraform/
@@ -33,8 +33,8 @@ $ rm terraform_0.11.10_linux_amd64.zip</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_or_install_through_tfenv_a_terraform_version_manager">OR install through tfenv: a Terraform version manager</h4>
+<div class="sect2">
+<h3 id="_or_install_through_tfenv_a_terraform_version_manager">OR install through tfenv: a Terraform version manager</h3>
 <p class="">First of all, download the tfenv binary and put it in your PATH.</p>
 <div class="literalblock">
 <div class="content">
@@ -47,13 +47,17 @@ $ echo 'export PATH="$HOME/.tfenv/bin:$PATH"'
 <p class="">Then, you can install desired version of terraform:</p>
 <div class="literalblock">
 <div class="content">
-<pre>$ tfenv install 0.11.10
-Terraform v0.11.10 is already installed</pre>
+<pre>$ tfenv install 0.11.10</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_show_version">Show version</h4>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage">Usage</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_show_version">Show version</h3>
 <div class="literalblock">
 <div class="content">
 <pre>$ terraform --version
@@ -61,11 +65,8 @@ Terraform v0.11.10 is already installed</pre>
 </div>
 </div>
 </div>
-</div>
 <div class="sect2">
-<h3 id="_usage">Usage</h3>
-<div class="sect3">
-<h4 id="_init_terraform">Init Terraform</h4>
+<h3 id="_init_terraform">Init Terraform</h3>
 <p class=""><code>$ terraform init</code></p>
 <p class="">It’s the first command you need to execute. Unless, terraform plan, apply,
 destroy and import will not work. The command terraform init will install :</p>
@@ -83,17 +84,17 @@ destroy and import will not work. The command terraform init will install :</p>
 </ul>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_init_terraform_and_don_t_ask_any_input">Init Terraform and don’t ask any input</h4>
+<div class="sect2">
+<h3 id="_init_terraform_and_don_t_ask_any_input">Init Terraform and don’t ask any input</h3>
 <p class=""><code>$ terraform init -input=false</code></p>
 </div>
-<div class="sect3">
-<h4 id="_change_backend_configuration_during_the_init">Change backend configuration during the init</h4>
+<div class="sect2">
+<h3 id="_change_backend_configuration_during_the_init">Change backend configuration during the init</h3>
 <p class=""><code>$ terraform init -backend-config=cfg/s3.dev.tf -reconfigure</code></p>
 <p class=""><code>-reconfigure</code> is used in order to tell terraform to nt copy the existing state to the new remote state location.</p>
 </div>
-<div class="sect3">
-<h4 id="_get">Get</h4>
+<div class="sect2">
+<h3 id="_get">Get</h3>
 <p class="">This command is useful when you have defined some modules. Modules are vendored
 so when you edit them, you need to get again modules content.</p>
 <p class=""><code>$ terraform get -update=true</code></p>
@@ -102,8 +103,8 @@ get. This pulls modules into the .terraform directory. Once you do that, unless
 you do another <code>terraform get -update=true</code>, you’ve essentially vendored those
 modules.</p>
 </div>
-<div class="sect3">
-<h4 id="_plan">Plan</h4>
+<div class="sect2">
+<h3 id="_plan">Plan</h3>
 <p class="">The plan step check configuration to execute and write a plan to apply to target
 infrastructure provider.</p>
 <p class=""><code>$ terraform plan -out plan.out</code></p>
@@ -113,8 +114,8 @@ change will have the desired effect once applied.</p>
 <p class="">When you execute terraform plan command, terraform will scan all *.tf files in
 your directory and create the plan.</p>
 </div>
-<div class="sect3">
-<h4 id="_apply">Apply</h4>
+<div class="sect2">
+<h3 id="_apply">Apply</h3>
 <p class="">Now you have the desired state so you can execute the plan.</p>
 <p class=""><code>$ terraform apply plan.out</code></p>
 <p class=""><strong>Good to know:</strong> Since terraform v0.11+, in an interactive mode (non
@@ -125,7 +126,6 @@ guarantee that the execution plan won’t change, without needing to write it to
 disk. This reduces the risk of potentially-sensitive data being left behind, or
 accidentally checked into version control.</p>
 <p class=""><code>$ terraform apply</code></p>
-</div>
 <div class="sect3">
 <h4 id="_apply_and_auto_aprove">Apply and auto aprove</h4>
 <p class=""><code>$ terraform apply -auto-aprove</code></p>
@@ -148,8 +148,9 @@ accidentally checked into version control.</p>
 </div>
 <p class="">This <em>-target</em> option works with <em>terraform plan</em> too.</p>
 </div>
-<div class="sect3">
-<h4 id="_destroy">Destroy</h4>
+</div>
+<div class="sect2">
+<h3 id="_destroy">Destroy</h3>
 <p class=""><code>$ terraform destroy</code></p>
 <p class="">Delete all the resources!</p>
 <p class="">A deletion plan can be created before:</p>
@@ -161,25 +162,27 @@ accidentally checked into version control.</p>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_debug">Debug</h4>
+<div class="sect2">
+<h3 id="_debug">Debug</h3>
 <div class="literalblock">
 <div class="content">
 <pre>$ echo "aws_iam_user.notif.arn" | terraform console
-arn:aws:iam::123456789:user/notification</pre>
+arn:aws:iam::123456789:user/notif</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_graph">Graph</h4>
+<div class="sect2">
+<h3 id="_graph">Graph</h3>
 <p class=""><code>$ terraform graph | dot –Tpng &gt; graph.png</code></p>
 <p class="">Visual dependency graph of terraform resources.</p>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_state">State</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_state">State</h3>
-<div class="sect3">
-<h4 id="_how_to_tell_to_terraform_you_moved_a_ressource_in_a_module">How to tell to Terraform you moved a ressource in a module?</h4>
+<h3 id="_how_to_tell_to_terraform_you_moved_a_ressource_in_a_module">How to tell to Terraform you moved a ressource in a module?</h3>
 <p class="">If you moved an existing resource in a module, you need to update the state:</p>
 <div class="literalblock">
 <div class="content">
@@ -187,8 +190,8 @@ arn:aws:iam::123456789:user/notification</pre>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_how_to_import_existing_resource_in_terraform">How to import existing resource in Terraform?</h4>
+<div class="sect2">
+<h3 id="_how_to_import_existing_resource_in_terraform">How to import existing resource in Terraform?</h3>
 <p class="">If you have an existing resource in your infrastructure provider, you can import
 it in your Terraform state:</p>
 <div class="literalblock">
@@ -199,22 +202,24 @@ arn:aws:iam::123456789:policy/elastic_post</pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_workspaces">Workspaces</h3>
+</div>
+<div class="sect1">
+<h2 id="_workspaces">Workspaces</h2>
+<div class="sectionbody">
 <p class="">To manage multiple distinct sets of infrastructure resources/environments.</p>
 <p class="">Instead of create a directory for each environment to manage, we need to just
 create needed workspace and use them:</p>
-<div class="sect3">
-<h4 id="_create_workspace">Create workspace</h4>
+<div class="sect2">
+<h3 id="_create_workspace">Create workspace</h3>
 <p class="">This command create a new workspace and then select it</p>
 <p class=""><code>$ terraform workspace new dev</code></p>
 </div>
-<div class="sect3">
-<h4 id="_select_a_workspace">Select a workspace</h4>
+<div class="sect2">
+<h3 id="_select_a_workspace">Select a workspace</h3>
 <p class=""><code>$ terraform workspace select dev</code></p>
 </div>
-<div class="sect3">
-<h4 id="_list_workspaces">List workspaces</h4>
+<div class="sect2">
+<h3 id="_list_workspaces">List workspaces</h3>
 <div class="literalblock">
 <div class="content">
 <pre>$ terraform workspace list
@@ -225,15 +230,17 @@ create needed workspace and use them:</p>
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_tools">Tools</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_tools">Tools</h3>
-<div class="sect3">
-<h4 id="_terraforming">Terraforming</h4>
+<h3 id="_terraforming">Terraforming</h3>
 <p class="">If you have an existing AWS account for examples with existing components like
 S3 buckets, SNS, VPC … You can use terraforming tool, a tool written in Ruby,
 which extract existing AWS resources and convert it to Terraform files!</p>
-<div class="sect4">
-<h5 id="_install_terraforming">Install Terraforming</h5>
+<div class="sect3">
+<h4 id="_install_terraforming">Install Terraforming</h4>
 <div class="literalblock">
 <div class="content">
 <pre>$ sudo apt install ruby
@@ -249,7 +256,7 @@ $ export AWS_SECRET_ACCESS_KEY="a_aws_secret_key"
 $ export AWS_DEFAULT_REGION="eu-central-1"</pre>
 </div>
 </div>
-<p class="">You can also specify credential profile in <em>~/.aws/credentials</em> and with <em>–profile</em> option.</p>
+<p class="">You can also specify credential profile in <em>~/.aws/credentials_s and with _–profile</em> option.</p>
 <div class="literalblock">
 <div class="content">
 <pre>$ cat ~/.aws/credentials
@@ -287,20 +294,21 @@ resources so you need to write it manually.</p>
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_known_issues">Known issues</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_known_issues">Known issues</h3>
-<div class="sect3">
-<h4 id="_signature_expired_xxxx_is_now_earlier_than_xxx">Signature expired: xxxx is now earlier than xxx</h4>
+<h3 id="_signature_expired_xxxx_is_now_earlier_than_xxx">Signature expired: xxxx is now earlier than xxx</h3>
 <p class="">If, suddently, you obtain an error message <code>Signature expired: xxx is now
 earlier than xxx'</code>, like this:</p>
 <p class="">Don’t worry it’s not an issue in the AWS account/user/credentials in terraform files</p>
 <p class="">BUT it’s an issue in your local machine date and time!</p>
 <p class="">So the solution is, simply: update your date and time to the good time ;-).</p>
 </div>
-<div class="sect3">
-<h4 id="_aws_was_not_able_to_validate_the_provided_access_credentials">AWS was not able to validate the provided access credentials</h4>
-<p class="">If, suddently, you obtain an error message ``AWS was not able to validate the
-provided access credentials'', like this:</p>
+<div class="sect2">
+<h3 id="_aws_was_not_able_to_validate_the_provided_access_credentials">AWS was not able to validate the provided access credentials</h3>
+<p class="">If, suddently, you obtain an error message <em>AWS was not able to validate the provided access credentials</em>, like this:</p>
 <div class="literalblock">
 <div class="content">
 <pre>* data.aws_vpc.vpc-titi: data.aws_vpc.vpc-titi:
@@ -311,8 +319,8 @@ status code: 401, request id: 9fbd5beb-e065-4933-ba67-2ceae9104c4c</pre>
 <p class="">No worries, it’s the same issue as above: your local/VM machine date and time is
 not uptodate ;-).</p>
 </div>
-<div class="sect3">
-<h4 id="_error_configuring_the_backend_s3_requesterror_send_request_failed">Error configuring the backend s3: RequestError: send request failed</h4>
+<div class="sect2">
+<h3 id="_error_configuring_the_backend_s3_requesterror_send_request_failed">Error configuring the backend s3: RequestError: send request failed</h3>
 <p class="">Again, you changed nothing but suddently you obtain a strange error message:</p>
 <div class="literalblock">
 <div class="content">
@@ -328,7 +336,6 @@ the values in your configuration, run "terraform init".</pre>
 </div>
 <p class="">It caused in reality by the proxy or a temporary issue between your network
 connectivity and AWS.</p>
-</div>
 </div>
 </div>
 </div>
