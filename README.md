@@ -19,10 +19,21 @@ $ rm terraform_0.11.10_linux_amd64.zip
 
 First of all, download the tfenv binary and put it in your PATH.
 
+If you use bash: 
 ```
 $ git clone https://github.com/Zordrak/tfenv.git ~/.tfenv
-$ echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> $HOME/bashrc
+$ echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> $HOME/.bashrc
+$ source $HOME/.bashrc
 ```
+
+If you use [zsh](https://doc.ubuntu-fr.org/zsh) like command interpreter:
+
+```
+$ git clone https://github.com/Zordrak/tfenv.git ~/.tfenv
+$ echo 'export PATH="$HOME/.tfenv/bin:$PATH"' >> $HOME/.zshrc
+$ source $HOME/.zshrc
+```
+
 
 Then, you can install desired version of terraform:
 
