@@ -116,7 +116,7 @@ Can destroy only one resource :
 
 ```
 $ echo "aws_iam_user.notification.arn" | terraform console
-arn:aws:iam::405223848550:user/notification
+arn:aws:iam::123456789:user/notification
 ```
 
 ### Graph
@@ -206,10 +206,11 @@ $ cat ~/.aws/credentials
 aws_access_key_id = xxx
 aws_secret_access_key = xxx
 aws_default_region = eu-central-1
- 
-# Pass profile name by --profile option
-$ terraforming s3 --profile aurelie
 ```
+
+Pass profile name by --profile option
+
+`$ terraforming s3 --profile aurelie`
 
 Usage
 
