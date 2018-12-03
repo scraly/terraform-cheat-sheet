@@ -210,18 +210,69 @@ $ terraform workspace list
 
 == Tools
 
+=== jq
+
+jq is a lightweight command-line JSON processor. Combined with terraform output it can be powerful.
+
+==== Installaton
+
+For Linux:
+
+`$ sudo apt-get install jq`
+
+For OS X:
+
+`$ brew install jq`
+
+==== Usage
+
+For example, we defind outputs in a module and when we execute _terraform apply_ outputs are displayed:
+
+....
+$ terraform apply
+...
+
+Apply complete! Resources: 0 added, 0 changed,
+ 0 destroyed.
+
+Outputs:
+
+elastic_endpoint = vpc-toto-12fgfd4d5f4ds5fngetwe4.
+eu-central-1.es.amazonaws.com
+....
+
+We can extract the value that we want in order to use it in a script for xample. With jq it's easy:
+
+....
+$ terraform output -json
+{
+    "elastic_endpoint": {
+        "sensitive": false,
+        "type": "string",
+        "value": "vpc-toto-12fgfd4d5f4ds5fngetwe4.
+        eu-central-1.es.amazonaws.com"
+    }
+}
+
+$ terraform output -json | jq '.elastic_endpoint.value'
+"vpc-toto-12fgfd4d5f4ds5fngetwe4.eu-central-1.
+es.amazonaws.com"
+....
+
 === Terraforming
 
 If you have an existing AWS account for examples with existing components like
 S3 buckets, SNS, VPC … You can use terraforming tool, a tool written in Ruby,
 which extract existing AWS resources and convert it to Terraform files!
 
-==== Install Terraforming
+==== Installation
 
 ....
 $ sudo apt install ruby
 $ gem install terraforming
 ....
+
+==== Usage
 
 Pre-requisites :
 
@@ -311,5 +362,4 @@ If you'd like to update the configuration interactively without storing
 the values in your configuration, run "terraform init".
 ....
 
-It caused in reality by the proxy or a temporary issue between your network
-connectivity and AWS.
+It caused in reality by a proxy or a temporary issue between your network connectivity and AWS.
