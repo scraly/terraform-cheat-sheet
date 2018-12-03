@@ -241,7 +241,7 @@ elastic_endpoint = vpc-toto-12fgfd4d5f4ds5fngetwe4.
 eu-central-1.es.amazonaws.com
 ....
 
-We can extract the value that we want in order to use it in a script for xample. With jq it's easy:
+We can extract the value that we want in order to use it in a script for example. With jq it's easy:
 
 ....
 $ terraform output -json
