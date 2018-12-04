@@ -2,12 +2,11 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link href="./redhat/assets/style.css" rel="stylesheet">
+<link href="./template/assets/style.css" rel="stylesheet">
 </head>
 <body>
 <header>
   <h1>Terraform CLI Cheat Sheet</h1>
-  <!--<img class="logo" src="./redhat/assets/logo.png"/>-->
 </header>
 <section class="content">
 <div class="sect1">
@@ -127,8 +126,8 @@ disk. This reduces the risk of potentially-sensitive data being left behind, or
 accidentally checked into version control.</p>
 <p class=""><code>$ terraform apply</code></p>
 <div class="sect3">
-<h4 id="_apply_and_auto_aprove">Apply and auto aprove</h4>
-<p class=""><code>$ terraform apply -auto-aprove</code></p>
+<h4 id="_apply_and_auto_approve">Apply and auto approve</h4>
+<p class=""><code>$ terraform apply -auto-approve</code></p>
 </div>
 <div class="sect3">
 <h4 id="_apply_and_define_new_variables_value">Apply and define new variables value</h4>
@@ -241,6 +240,8 @@ create needed workspace and use them:</p>
 <h4 id="_installaton">Installaton</h4>
 <p class="">For Linux:</p>
 <p class=""><code>$ sudo apt-get install jq</code></p>
+<p class="">or</p>
+<p class=""><code>$ yum install jq</code></p>
 <p class="">For OS X:</p>
 <p class=""><code>$ brew install jq</code></p>
 </div>
@@ -288,10 +289,13 @@ S3 buckets, SNS, VPC … You can use terraforming tool, a tool written in Ruby,
 which extract existing AWS resources and convert it to Terraform files!</p>
 <div class="sect3">
 <h4 id="_installation_2">Installation</h4>
+<p class=""><code>$ sudo apt install ruby</code>
+or
+<code>$ sudo yum install ruby</code></p>
+<p class="">and</p>
 <div class="literalblock">
 <div class="content">
-<pre>$ sudo apt install ruby
-$ gem install terraforming</pre>
+<pre>$ gem install terraforming</pre>
 </div>
 </div>
 </div>
@@ -396,7 +400,7 @@ the values in your configuration, run "terraform init".</pre>
 <div class="author-bio">Cloud Dev(Ops) at Continental</div>
 </div>
 
-<div class="author-bio">v1.0.0</div>
+<div class="author-bio">v1.0.1</div>
 </div>
 </section>
 </body>

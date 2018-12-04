@@ -4,7 +4,7 @@ Aurélie Vache <https://twitter.com/aurelievache>
 :authorbio: Cloud Dev(Ops) at Continental
 :pdf-width: 508mm
 :pdf-height: 361mm
-:version: v1.0.0
+:version: v1.0.1
 
 == About Terraform CLI
 
@@ -114,9 +114,9 @@ accidentally checked into version control.
 
 `$ terraform apply`
 
-==== Apply and auto aprove
+==== Apply and auto approve
 
-`$ terraform apply -auto-aprove`
+`$ terraform apply -auto-approve`
 
 ==== Apply and define new variables value
 
@@ -220,6 +220,10 @@ For Linux:
 
 `$ sudo apt-get install jq`
 
+or
+
+`$ yum install jq`
+
 For OS X:
 
 `$ brew install jq`
@@ -267,8 +271,12 @@ which extract existing AWS resources and convert it to Terraform files!
 
 ==== Installation
 
+`$ sudo apt install ruby`
+or
+`$ sudo yum install ruby`
+
+and
 ....
-$ sudo apt install ruby
 $ gem install terraforming
 ....
 
