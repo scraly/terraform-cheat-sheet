@@ -69,7 +69,7 @@ destroy and import will not work. The command terraform init will install :
 
 `$ terraform init -backend-config=cfg/s3.dev.tf -reconfigure`
 
-`-reconfigure` is used in order to tell terraform to nt copy the existing state to the new remote state location.
+`-reconfigure` is used in order to tell terraform to not copy the existing state to the new remote state location.
 
 === Get
 
@@ -151,6 +151,8 @@ $ terraform destroy -target aws_s3_bucket.my_bucket
 
 === Debug
 
+The Terraform console command is useful for testing interpolations before using them in configurations. Terraform console will read configured state even if it is remote.
+
 ....
 $ echo "aws_iam_user.notif.arn" | terraform console
 arn:aws:iam::123456789:user/notif
@@ -161,6 +163,14 @@ arn:aws:iam::123456789:user/notif
 `$ terraform graph | dot –Tpng > graph.png`
 
 Visual dependency graph of terraform resources.
+
+=== Validate
+
+Validate command is used to validate/check the syntax of the Terraform files. A syntax check is done on all the terraform files in the directory, and will display an error if any of the files doesn't validate. The syntax check does not cover every syntax common issues.
+
+....
+$ terraform validate
+....
 
 == State
 
@@ -208,13 +218,20 @@ $ terraform workspace list
   prelive
 ....
 
+=== Show current workspace
+
+....
+$ terraform workspace show
+dev
+....
+
 == Tools
 
 === jq
 
 jq is a lightweight command-line JSON processor. Combined with terraform output it can be powerful.
 
-==== Installaton
+==== Installation
 
 For Linux:
 
@@ -312,12 +329,7 @@ Usage
 $ terraforming --help
 Commands:
 terraforming alb # ALB
-terraforming asg # AutoScaling Group
-terraforming cwa # CloudWatch Alarm
-terraforming dbpg # Database Parameter Group
 ...
-terraforming snst # SNS Topic
-terraforming sqs # SQS
 terraforming vgw # VPN Gateway
 terraforming vpc # VPC
 ....

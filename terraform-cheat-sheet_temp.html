@@ -90,7 +90,7 @@ destroy and import will not work. The command terraform init will install :</p>
 <div class="sect2">
 <h3 id="_change_backend_configuration_during_the_init">Change backend configuration during the init</h3>
 <p class=""><code>$ terraform init -backend-config=cfg/s3.dev.tf -reconfigure</code></p>
-<p class=""><code>-reconfigure</code> is used in order to tell terraform to nt copy the existing state to the new remote state location.</p>
+<p class=""><code>-reconfigure</code> is used in order to tell terraform to not copy the existing state to the new remote state location.</p>
 </div>
 <div class="sect2">
 <h3 id="_get">Get</h3>
@@ -163,6 +163,7 @@ accidentally checked into version control.</p>
 </div>
 <div class="sect2">
 <h3 id="_debug">Debug</h3>
+<p class="">The Terraform console command is useful for testing interpolations before using them in configurations. Terraform console will read configured state even if it is remote.</p>
 <div class="literalblock">
 <div class="content">
 <pre>$ echo "aws_iam_user.notif.arn" | terraform console
@@ -174,6 +175,15 @@ arn:aws:iam::123456789:user/notif</pre>
 <h3 id="_graph">Graph</h3>
 <p class=""><code>$ terraform graph | dot –Tpng &gt; graph.png</code></p>
 <p class="">Visual dependency graph of terraform resources.</p>
+</div>
+<div class="sect2">
+<h3 id="_validate">Validate</h3>
+<p class="">Validate command is used to validate/check the syntax of the Terraform files. A syntax check is done on all the terraform files in the directory, and will display an error if any of the files doesn&#8217;t validate. The syntax check does not cover every syntax common issues.</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ terraform validate</pre>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -228,6 +238,15 @@ create needed workspace and use them:</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_show_current_workspace">Show current workspace</h3>
+<div class="literalblock">
+<div class="content">
+<pre>$ terraform workspace show
+dev</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -237,7 +256,7 @@ create needed workspace and use them:</p>
 <h3 id="_jq">jq</h3>
 <p class="">jq is a lightweight command-line JSON processor. Combined with terraform output it can be powerful.</p>
 <div class="sect3">
-<h4 id="_installaton">Installaton</h4>
+<h4 id="_installation_2">Installation</h4>
 <p class="">For Linux:</p>
 <p class=""><code>$ sudo apt-get install jq</code></p>
 <p class="">or</p>
@@ -288,7 +307,7 @@ es.amazonaws.com"</pre>
 S3 buckets, SNS, VPC … You can use terraforming tool, a tool written in Ruby,
 which extract existing AWS resources and convert it to Terraform files!</p>
 <div class="sect3">
-<h4 id="_installation_2">Installation</h4>
+<h4 id="_installation_3">Installation</h4>
 <p class=""><code>$ sudo apt install ruby</code>
 or
 <code>$ sudo yum install ruby</code></p>
@@ -331,12 +350,7 @@ aws_default_region = eu-central-1</pre>
 <pre>$ terraforming --help
 Commands:
 terraforming alb # ALB
-terraforming asg # AutoScaling Group
-terraforming cwa # CloudWatch Alarm
-terraforming dbpg # Database Parameter Group
 ...
-terraforming snst # SNS Topic
-terraforming sqs # SQS
 terraforming vgw # VPN Gateway
 terraforming vpc # VPC</pre>
 </div>
