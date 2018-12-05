@@ -4,7 +4,7 @@ Aurélie Vache <https://twitter.com/aurelievache>
 :authorbio: Cloud Dev(Ops) at Continental
 :pdf-width: 508mm
 :pdf-height: 361mm
-:version: v1.0.1
+:version: v1.0.2
 
 == About Terraform CLI
 
@@ -252,7 +252,6 @@ For example, we defind outputs in a module and when we execute _terraform apply_
 ....
 $ terraform apply
 ...
-
 Apply complete! Resources: 0 added, 0 changed,
  0 destroyed.
 
@@ -376,10 +375,7 @@ Initializing the backend...
  
 Error configuring the backend "s3": RequestError: send request failed
 caused by: Post https://sts.amazonaws.com/: Parent proxy unreacheable
- 
-Please update the configuration in your Terraform files to fix this error.
-If you'd like to update the configuration interactively without storing
-the values in your configuration, run "terraform init".
+...
 ....
 
 It caused in reality by a proxy or a temporary issue between your network connectivity and AWS.
