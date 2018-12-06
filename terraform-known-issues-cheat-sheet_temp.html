@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link href="./template/assets/style.css" rel="stylesheet">
+</head>
+<body>
+<header>
+  <h1>Terraform known issues Cheat Sheet</h1>
+</header>
+<section class="content">
+<div class="sect1">
+<h2 id="_signature_expired_xxxx_is_now_earlier_than_xxx">Signature expired: xxxx is now earlier than xxx</h2>
+<div class="sectionbody">
+<p class="">If, suddently, you obtain an error message <code>Signature expired: xxx is now
+earlier than xxx'</code>, like this:</p>
+<p class="">Don’t worry it’s not an issue in the AWS account/user/credentials in terraform files</p>
+<p class="">BUT it’s an issue in your local machine date and time!</p>
+<p class="">So the solution is, simply: update your date and time to the good time ;-).</p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_aws_was_not_able_to_validate_the_provided_access_credentials">AWS was not able to validate the provided access credentials</h2>
+<div class="sectionbody">
+<p class="">If, suddently, you obtain an error message <em>AWS was not able to validate the provided access credentials</em>, like this:</p>
+<div class="literalblock">
+<div class="content">
+<pre>* data.aws_vpc.vpc-titi: data.aws_vpc.vpc-titi:
+AuthFailure: AWS was not able to validate the provided access credentials
+status code: 401, request id: 9fbd5beb-e065-4933-ba67-2ceae9104c4c</pre>
+</div>
+</div>
+<p class="">No worries, it’s the same issue as above: your local/VM machine date and time is
+not uptodate ;-).</p>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_error_configuring_the_backend_s3_requesterror_send_request_failed">Error configuring the backend s3: RequestError: send request failed</h2>
+<div class="sectionbody">
+<p class="">Again, you changed nothing but suddently you obtain a strange error message:</p>
+<div class="literalblock">
+<div class="content">
+<pre>Initializing the backend...
+
+Error configuring the backend "s3": RequestError: send request failed
+caused by: Post https://sts.amazonaws.com/: Parent proxy unreacheable
+...</pre>
+</div>
+</div>
+<p class="">It caused in reality by a proxy or a temporary issue between your network connectivity and AWS.</p>
+</div>
+</div>
+<div class="sect1 authors">
+<h3>Authors :</h3>
+<div class="author">
+<div class="author-avatar"><img src="http://avatars.io/twitter/aurelievache"/></div>
+<div class="author-name"><a href="https://twitter.com/aurelievache">@aurelievache</a></div>
+<div class="author-bio">Cloud Dev(Ops) at Continental</div>
+</div>
+
+<div class="author-bio">v1.0.0</div>
+</div>
+</section>
+</body>

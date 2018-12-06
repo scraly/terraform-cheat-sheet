@@ -185,11 +185,45 @@ arn:aws:iam::123456789:user/notif</pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_providers">Providers</h3>
+<p class="">You can use a lot of providers/plugins in your terraform definition resources, so it can be useful to have a tree of providers used by modules in your project.</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ terraform providers
+.
+├── provider.aws ~&gt; 1.24.0
+├── module.my_module
+│   ├── provider.aws (inherited)
+│   ├── provider.null
+│   └── provider.template
+└── module.elastic
+    └── provider.aws (inherited)</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_state">State</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_pull_remote_state_in_a_local_copy">Pull remote state in a local copy</h3>
+<div class="literalblock">
+<div class="content">
+<pre>$ terraform state pull &gt; terraform.tfstate</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_push_state_in_remote_backend_storage">Push state in remote backend storage</h3>
+<div class="literalblock">
+<div class="content">
+<pre>$ terraform state push</pre>
+</div>
+</div>
+<p class="">This command is usefull if for example you riginally use a local tf state and then you define a backend storage, in S3 or Consul&#8230;&#8203;</p>
+</div>
 <div class="sect2">
 <h3 id="_how_to_tell_to_terraform_you_moved_a_ressource_in_a_module">How to tell to Terraform you moved a ressource in a module?</h3>
 <p class="">If you moved an existing resource in a module, you need to update the state:</p>
@@ -359,46 +393,6 @@ terraforming vpc # VPC</pre>
 <p class="">Remarks: As you can see, terraforming can’t extract for the moment API gateway
 resources so you need to write it manually.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_known_issues">Known issues</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_signature_expired_xxxx_is_now_earlier_than_xxx">Signature expired: xxxx is now earlier than xxx</h3>
-<p class="">If, suddently, you obtain an error message <code>Signature expired: xxx is now
-earlier than xxx'</code>, like this:</p>
-<p class="">Don’t worry it’s not an issue in the AWS account/user/credentials in terraform files</p>
-<p class="">BUT it’s an issue in your local machine date and time!</p>
-<p class="">So the solution is, simply: update your date and time to the good time ;-).</p>
-</div>
-<div class="sect2">
-<h3 id="_aws_was_not_able_to_validate_the_provided_access_credentials">AWS was not able to validate the provided access credentials</h3>
-<p class="">If, suddently, you obtain an error message <em>AWS was not able to validate the provided access credentials</em>, like this:</p>
-<div class="literalblock">
-<div class="content">
-<pre>* data.aws_vpc.vpc-titi: data.aws_vpc.vpc-titi:
-AuthFailure: AWS was not able to validate the provided access credentials
-status code: 401, request id: 9fbd5beb-e065-4933-ba67-2ceae9104c4c</pre>
-</div>
-</div>
-<p class="">No worries, it’s the same issue as above: your local/VM machine date and time is
-not uptodate ;-).</p>
-</div>
-<div class="sect2">
-<h3 id="_error_configuring_the_backend_s3_requesterror_send_request_failed">Error configuring the backend s3: RequestError: send request failed</h3>
-<p class="">Again, you changed nothing but suddently you obtain a strange error message:</p>
-<div class="literalblock">
-<div class="content">
-<pre>Initializing the backend...
-
-Error configuring the backend "s3": RequestError: send request failed
-caused by: Post https://sts.amazonaws.com/: Parent proxy unreacheable
-...</pre>
-</div>
-</div>
-<p class="">It caused in reality by a proxy or a temporary issue between your network connectivity and AWS.</p>
 </div>
 </div>
 </div>
