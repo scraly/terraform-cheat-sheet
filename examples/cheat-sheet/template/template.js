@@ -28,7 +28,7 @@ const getAuthors = function (node) {
 const renderAuthors = function (authors) {
   return authors.map(author => {
     return `<div class="author">
-<div class="author-avatar"><img src="http://avatars.io/twitter/${author.twitter}"/></div>
+<div class="author-avatar"><img src="https://pbs.twimg.com/profile_images/726148230224949249/g2T2qehD_400x400.jpg"/></div>
 <div class="author-name"><a href="${author.email}">@${author.twitter}</a></div>
 <div class="author-bio">${author.bio}</div>
 </div>
@@ -47,7 +47,7 @@ module.exports = [{
 </head>
 <body>
 <header>
-  <h1>${ctx.node.getHeader().getTitle()}</h1>
+  <h1><img width="50" height="50" src="examples/cheat-sheet/template/assets/logo.png"/> ${ctx.node.getHeader().getTitle()}</h1>
 </header>
 <section class="content">
 ${ctx.node.getContent()}

@@ -6,7 +6,7 @@
 </head>
 <body>
 <header>
-  <h1>Terraform CLI Cheat Sheet</h1>
+  <h1><img width="50" height="50" src="examples/cheat-sheet/template/assets/logo.png"/> Terraform CLI Cheat Sheet</h1>
 </header>
 <section class="content">
 <div class="sect1">
@@ -24,11 +24,10 @@ This tool have a powerfull and very intuitive Command Line Interface.</p>
 <h3 id="_install_through_curl">Install through curl</h3>
 <div class="literalblock">
 <div class="content">
-<pre>$ curl -O https://releases.hashicorp.com/terraform/
-0.11.10/terraform_0.11.10_linux_amd64.zip
-$ sudo unzip terraform_0.11.10_linux_amd64.zip
+<pre>$ curl -O https://releases.hashicorp.com/terraform/0.15.1/terraform_0.15.1_darwin_amd64.zip
+$ sudo terraform_0.15.1_darwin_amd64.zip
  -d /usr/local/bin/
-$ rm terraform_0.11.10_linux_amd64.zip</pre>
+$ rm terraform_0.15.1_darwin_amd64.zip</pre>
 </div>
 </div>
 </div>
@@ -40,13 +39,13 @@ $ rm terraform_0.11.10_linux_amd64.zip</pre>
 <pre>$ git clone https://github.com/Zordrak/tfenv.git
  ~/.tfenv
 $ echo 'export PATH="$HOME/.tfenv/bin:$PATH"'
- &gt;&gt; $HOME/bashrc</pre>
+ &gt;&gt; $HOME/.bashrc</pre>
 </div>
 </div>
 <p class="">Then, you can install desired version of terraform:</p>
 <div class="literalblock">
 <div class="content">
-<pre>$ tfenv install 0.11.10</pre>
+<pre>$ tfenv install 0.15.1</pre>
 </div>
 </div>
 </div>
@@ -60,7 +59,7 @@ $ echo 'export PATH="$HOME/.tfenv/bin:$PATH"'
 <div class="literalblock">
 <div class="content">
 <pre>$ terraform --version
- Terraform v0.11.10</pre>
+ Terraform v0.15.1</pre>
 </div>
 </div>
 </div>
@@ -268,7 +267,7 @@ create needed workspace and use them:</p>
 <pre>$ terraform workspace list
   default
 * dev
-  prelive</pre>
+  prod</pre>
 </div>
 </div>
 </div>
@@ -335,6 +334,16 @@ es.amazonaws.com"</pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_gcloud_bulk_export_in_terraform_format">gcloud bulk-export in terraform format</h3>
+<p class="">Export natively Google Cloud resources in Terraform</p>
+<div class="sect3">
+<h4 id="_usage_3">Usage</h4>
+<p class=""><code>$ gcloud beta resource-config bulk-export --resource-format=terraform</code></p>
+<p class="">Resources types supported:</p>
+<p class=""><code>$ gcloud beta resource-config list-resources</code></p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_terraforming">Terraforming</h3>
 <p class="">If you have an existing AWS account for examples with existing components like
 S3 buckets, SNS, VPC … You can use terraforming tool, a tool written in Ruby,
@@ -352,7 +361,7 @@ or
 </div>
 </div>
 <div class="sect3">
-<h4 id="_usage_3">Usage</h4>
+<h4 id="_usage_4">Usage</h4>
 <p class="">Pre-requisites :</p>
 <p class="">Like for Terraform, you need to set AWS credentials</p>
 <div class="literalblock">
@@ -399,12 +408,12 @@ resources so you need to write it manually.</p>
 <div class="sect1 authors">
 <h3>Authors :</h3>
 <div class="author">
-<div class="author-avatar"><img src="http://avatars.io/twitter/aurelievache"/></div>
+<div class="author-avatar"><img src="https://pbs.twimg.com/profile_images/726148230224949249/g2T2qehD_400x400.jpg"/></div>
 <div class="author-name"><a href="https://twitter.com/aurelievache">@aurelievache</a></div>
-<div class="author-bio">Cloud Dev(Ops) at Continental</div>
+<div class="author-bio">Cloud Engineer &amp; DevRel at Stack Labs</div>
 </div>
 
-<div class="author-bio">v1.0.2</div>
+<div class="author-bio">v1.0.3</div>
 </div>
 </section>
 </body>

@@ -1,7 +1,7 @@
 = Terraform CLI Cheat Sheet
 Aurélie Vache <https://twitter.com/aurelievache>
 :author: Aurélie Vache
-:authorbio: Cloud Dev(Ops) chez Continental
+:authorbio: Cloud Engineer chez Continental
 :pdf-width: 508mm
 :pdf-height: 361mm
 :version: v1.0.2

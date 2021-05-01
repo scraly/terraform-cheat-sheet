@@ -1,10 +1,10 @@
 = Terraform CLI Cheat Sheet
 Aurélie Vache <https://twitter.com/aurelievache>
 :author: Aurélie Vache
-:authorbio: Cloud Dev(Ops) at Continental
+:authorbio: Cloud Engineer & DevRel at Stack Labs
 :pdf-width: 508mm
 :pdf-height: 361mm
-:version: v1.0.2
+:version: v1.0.3
 
 == About Terraform CLI
 
@@ -17,11 +17,10 @@ This tool have a powerfull and very intuitive Command Line Interface.
 === Install through curl
 
 ....
-$ curl -O https://releases.hashicorp.com/terraform/
-0.11.10/terraform_0.11.10_linux_amd64.zip
-$ sudo unzip terraform_0.11.10_linux_amd64.zip
+$ curl -O https://releases.hashicorp.com/terraform/0.15.1/terraform_0.15.1_darwin_amd64.zip
+$ sudo terraform_0.15.1_darwin_amd64.zip
  -d /usr/local/bin/
-$ rm terraform_0.11.10_linux_amd64.zip
+$ rm terraform_0.15.1_darwin_amd64.zip
 ....
 
 === OR install through tfenv: a Terraform version manager
@@ -38,7 +37,7 @@ $ echo 'export PATH="$HOME/.tfenv/bin:$PATH"'
 Then, you can install desired version of terraform:
 
 ....
-$ tfenv install 0.11.10
+$ tfenv install 0.15.1
 ....
 
 == Usage
@@ -47,7 +46,7 @@ $ tfenv install 0.11.10
 
 ....
 $ terraform --version
- Terraform v0.11.10
+ Terraform v0.15.1
 ....
 
 === Init Terraform
@@ -245,7 +244,7 @@ This command create a new workspace and then select it
 $ terraform workspace list
   default
 * dev
-  prelive
+  prod
 ....
 
 === Show current workspace
@@ -308,6 +307,18 @@ $ terraform output -json | jq '.elastic_endpoint.value'
 "vpc-toto-12fgfd4d5f4ds5fngetwe4.eu-central-1.
 es.amazonaws.com"
 ....
+
+=== gcloud bulk-export in terraform format
+
+Export natively Google Cloud resources in Terraform
+
+==== Usage
+
+`$ gcloud beta resource-config bulk-export --resource-format=terraform`
+
+Resources types supported:
+
+`$ gcloud beta resource-config list-resources`
 
 === Terraforming
 
