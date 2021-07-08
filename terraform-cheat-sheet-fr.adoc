@@ -32,7 +32,7 @@ Premièrement, téléchargez le binaire de tfenv et mettez le dans votre PATH.
 $ git clone https://github.com/Zordrak/tfenv.git
  ~/.tfenv
 $ echo 'export PATH="$HOME/.tfenv/bin:$PATH"'
- >> $HOME/bashrc
+ >> $HOME/.bashrc
 ....
 
 Ensuite, vous pouvez installer la version de Terraform désirée :
