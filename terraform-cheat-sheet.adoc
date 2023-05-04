@@ -1,10 +1,11 @@
 = Terraform CLI Cheat Sheet
 Aurélie Vache <https://twitter.com/aurelievache>
 :author: Aurélie Vache
-:authorbio: Cloud Engineer & DevRel at Stack Labs
+:authorbio: DevRel at OVHcloud
+:authorimg: https://pbs.twimg.com/profile_images/1589660843012128776/lb5thctk_400x400.jpg
 :pdf-width: 508mm
 :pdf-height: 361mm
-:version: v1.0.3
+:version: v1.0.4
 
 == About Terraform CLI
 
@@ -17,10 +18,11 @@ This tool have a powerfull and very intuitive Command Line Interface.
 === Install through curl
 
 ....
-$ curl -O https://releases.hashicorp.com/terraform/0.15.1/terraform_0.15.1_darwin_amd64.zip
-$ sudo terraform_0.15.1_darwin_amd64.zip
+$ curl -O https://releases.hashicorp.com/terraform/
+ 1.4.6/terraform_1.4.6_darwin_amd64.zip
+$ sudo terraform_1.4.6_darwin_amd64.zip
  -d /usr/local/bin/
-$ rm terraform_0.15.1_darwin_amd64.zip
+$ rm terraform_1.4.6_darwin_amd64.zip
 ....
 
 === OR install through tfenv: a Terraform version manager
@@ -28,16 +30,17 @@ $ rm terraform_0.15.1_darwin_amd64.zip
 First of all, download the tfenv binary and put it in your PATH.
 
 ....
-$ git clone https://github.com/Zordrak/tfenv.git
- ~/.tfenv
+$ git clone https://github.com/tfutils/tfenv.git
+ --depth=1 ~/.tfenv
 $ echo 'export PATH="$HOME/.tfenv/bin:$PATH"'
- >> $HOME/.bashrc
+ >> ~/.bash_profile
 ....
 
-Then, you can install desired version of terraform:
+Then, you can install and use desired version of terraform:
 
 ....
-$ tfenv install 0.15.1
+$ tfenv install 1.4.6
+$ tfenv use 1.4.6
 ....
 
 == Usage
@@ -45,8 +48,8 @@ $ tfenv install 0.15.1
 === Show version
 
 ....
-$ terraform --version
- Terraform v0.15.1
+$ terraform -v
+ Terraform v1.4.6
 ....
 
 === Init Terraform
@@ -64,6 +67,8 @@ destroy and import will not work. The command terraform init will install :
 
 `$ terraform init -input=false`
 
+=== &nbsp;
+=== &nbsp;
 === Change backend configuration during the init
 
 `$ terraform init -backend-config=cfg/s3.dev.tf -reconfigure`
@@ -117,6 +122,7 @@ accidentally checked into version control.
 
 `$ terraform apply -auto-approve`
 
+==== &nbsp;
 ==== Apply and define new variables value
 
 ....
@@ -188,6 +194,12 @@ $ terraform providers
 ....
 
 == State
+
+=== Show and output the state (human readable way)
+
+....
+$ terraform show
+....
 
 === Pull remote state in a local copy
 
@@ -320,63 +332,3 @@ Resources types supported:
 
 `$ gcloud beta resource-config list-resources`
 
-=== Terraforming
-
-If you have an existing AWS account for examples with existing components like
-S3 buckets, SNS, VPC … You can use terraforming tool, a tool written in Ruby,
-which extract existing AWS resources and convert it to Terraform files!
-
-==== Installation
-
-`$ sudo apt install ruby`
-or
-`$ sudo yum install ruby`
-
-and
-....
-$ gem install terraforming
-....
-
-==== Usage
-
-Pre-requisites :
-
-Like for Terraform, you need to set AWS credentials
-
-....
-$ export AWS_ACCESS_KEY_ID="an_aws_access_key"
-$ export AWS_SECRET_ACCESS_KEY="a_aws_secret_key"
-$ export AWS_DEFAULT_REGION="eu-central-1"
-....
-
-You can also specify credential profile in _~/.aws/credentials_s and with _–profile_ option.
-
-....
-$ cat ~/.aws/credentials
-[aurelie]
-aws_access_key_id = xxx
-aws_secret_access_key = xxx
-aws_default_region = eu-central-1
-....
-
-....
-$ terraforming s3 --profile aurelie
-....
-
-Usage
-
-....
-$ terraforming --help
-Commands:
-terraforming alb # ALB
-...
-terraforming vgw # VPN Gateway
-terraforming vpc # VPC
-....
-
-Example:
-
-`$ terraforming s3 > aws_s3.tf`
-
-Remarks: As you can see, terraforming can’t extract for the moment API gateway
-resources so you need to write it manually.

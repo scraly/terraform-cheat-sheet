@@ -6,21 +6,23 @@ const getAuthors = function (node) {
       const author = node.getAttribute(`author_${index}`)
       const email = node.getAttribute(`email_${index}`)
       const bio = node.getAttribute(`authorbio_${index}`)
+      const img = node.getAttribute(`authorimg_${index}`)
       let twitter;
       if (email && email.startsWith("https://twitter.com/")) {
         twitter = email.replace("https://twitter.com/", "");
       }
-      result.push({ name: author, email: email, bio: bio, twitter: twitter })
+      result.push({ name: author, email: email, bio: bio, img: img, twitter: twitter })
     }
   } else {
     const author = node.getAttribute('author')
     const email = node.getAttribute('email')
     const bio = node.getAttribute(`authorbio`)
+    const img = node.getAttribute(`authorimg`)
     let twitter;
     if (email && email.startsWith("https://twitter.com/")) {
       twitter = email.replace("https://twitter.com/", "");
     }
-    result.push({ name: author, email: email, bio: bio, twitter: twitter })
+    result.push({ name: author, email: email, bio: bio, img: img, twitter: twitter })
   }
   return result;
 }
@@ -28,7 +30,7 @@ const getAuthors = function (node) {
 const renderAuthors = function (authors) {
   return authors.map(author => {
     return `<div class="author">
-<div class="author-avatar"><img src="https://pbs.twimg.com/profile_images/726148230224949249/g2T2qehD_400x400.jpg"/></div>
+<div class="author-avatar"><img src="${author.img}"/></div>
 <div class="author-name"><a href="${author.email}">@${author.twitter}</a></div>
 <div class="author-bio">${author.bio}</div>
 </div>
@@ -43,7 +45,7 @@ module.exports = [{
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<link href="./template/assets/style.css" rel="stylesheet">
+<link href="./examples/cheat-sheet/template/assets/style.css" rel="stylesheet">
 </head>
 <body>
 <header>
