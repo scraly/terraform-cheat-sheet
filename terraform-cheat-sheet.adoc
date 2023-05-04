@@ -154,6 +154,7 @@ A deletion plan can be created before:
 $ terraform destroy -target aws_s3_bucket.my_bucket
 ....
 
+
 === Debug
 
 The Terraform console command is useful for testing interpolations before using them in configurations. Terraform console will read configured state even if it is remote.
@@ -161,6 +162,15 @@ The Terraform console command is useful for testing interpolations before using 
 ....
 $ echo "aws_iam_user.notif.arn" | terraform console
 arn:aws:iam::123456789:user/notif
+....
+
+=== Logs level
+
+Set the log to DEBUG level and save the log in an output external file.
+
+....
+$ TF_LOG_PATH=mylogfile.txt TF_LOG=debug 
+ terraform apply
 ....
 
 === Graph
@@ -199,6 +209,14 @@ $ terraform providers
 
 ....
 $ terraform show
+....
+
+=== Refresh
+
+Compare the current real remote information and put it in the state.
+
+....
+$ terraform refresh
 ....
 
 === Pull remote state in a local copy

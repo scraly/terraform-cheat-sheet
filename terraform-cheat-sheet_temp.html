@@ -185,6 +185,16 @@ arn:aws:iam::123456789:user/notif</pre>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_logs_level">Logs level</h3>
+<p class="">Set the log to DEBUG level and save the log in an output external file.</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ TF_LOG_PATH=mylogfile.txt TF_LOG=debug
+ terraform apply</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_graph">Graph</h3>
 <p class=""><code>$ terraform graph | dot –Tpng &gt; graph.png</code></p>
 <p class="">Visual dependency graph of terraform resources.</p>
@@ -225,6 +235,15 @@ arn:aws:iam::123456789:user/notif</pre>
 <div class="literalblock">
 <div class="content">
 <pre>$ terraform show</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_refresh">Refresh</h3>
+<p class="">Compare the current real remote information and put it in the state.</p>
+<div class="literalblock">
+<div class="content">
+<pre>$ terraform refresh</pre>
 </div>
 </div>
 </div>
