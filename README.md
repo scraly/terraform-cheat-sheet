@@ -23,3 +23,25 @@ Refresh information. Compare the current real remote information and put it in t
 ```
 $ terraform refresh
 ```
+
+Get an element from a slice
+(convert a set to a list and then get the first element in the list)
+
+```
+https://developer.hashicorp.com/terraform/language/functions/tolist
+
+output "iam" {
+    value = data.ovh_iam_policies.my_policies.policies
+}
+
+Outputs:
+
+iam = toset([
+  "1a016c5f-bb43-4069-803d-daab0f22319b",
+  "d7daf48e-ba7e-4373-aa4b-b6a9dcace1f3",
+])
+
+data "ovh_iam_policy" "my_policy" {
+  id = tolist(data.ovh_iam_policies.my_policies.policies)[0]
+}
+```
