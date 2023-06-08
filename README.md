@@ -45,3 +45,17 @@ data "ovh_iam_policy" "my_policy" {
   id = tolist(data.ovh_iam_policies.my_policies.policies)[0]
 }
 ```
+
+Display all the available resources in your TF state
+
+```
+terraform state list
+```
+
+Output:
+
+```
+data.ovh_iam_policies.my_policies
+data.ovh_iam_policy.my_policy
+data.ovh_iam_reference_actions.vps_actions
+```
