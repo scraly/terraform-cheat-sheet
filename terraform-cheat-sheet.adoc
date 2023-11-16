@@ -231,7 +231,7 @@ $ terraform state pull > terraform.tfstate
 $ terraform state push
 ....
 
-This command is usefull if for example you riginally use a local tf state and then you define a backend storage, in S3 or Consul...
+This command is usefull if for example you originally use a local tf state and then you define a backend storage, in S3 or Consul...
 
 === How to tell to Terraform you moved a ressource in a module?
 
@@ -306,7 +306,7 @@ For OS X:
 
 ==== Usage
 
-For example, we defind outputs in a module and when we execute _terraform apply_ outputs are displayed:
+For example, we define outputs in a module and when we execute _terraform apply_ outputs are displayed:
 
 ....
 $ terraform apply
